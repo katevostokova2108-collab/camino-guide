@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Камино де Сантьяго — Португальский путь по побережью</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-sand: #F5F0E8;
+      --color-warm: #E8DFD0;
+      --color-earth: #8B7355;
+      --color-ocean: #2E6B8A;
+      --color-ocean-light: #4A9BBF;
+      --color-text: #2C2C2C;
+      --color-text-light: #5A5A5A;
+      --color-white: #FFFFFF;
+      --color-accent: #D4A843;
+      --font-serif: 'Merriweather', Georgia, serif;
+      --font-sans: 'Inter', -apple-system, sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-serif);
+      color: var(--color-text);
+      background: var(--color-sand);
+      line-height: 1.8;
+    }
+
+    /* ============ HERO ============ */
+    .hero {
+      position: relative;
+      height: 60vh;
+      min-height: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: linear-gradient(135deg, #1a3a4a 0%, #2E6B8A 40%, #4A9BBF 100%);
+      color: var(--color-white);
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 80%, rgba(212, 168, 67, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      padding: 2rem;
+    }
+
+    .hero-label {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      font-weight: 300;
+      font-style: italic;
+      opacity: 0.85;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-meta {
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      opacity: 0.7;
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .hero-meta span { display: flex; align-items: center; gap: 0.4rem; }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ============ INTRO ============ */
+    .intro {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 6rem 2rem;
+      text-align: center;
+    }
+
+    .intro h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      color: var(--color-ocean);
+    }
+
+    .intro p {
+      font-size: 1.1rem;
+      color: var(--color-text-light);
+      margin-bottom: 1rem;
+    }
+
+    /* ============ ROUTE MAP ============ */
+    .route-map {
+      background: var(--color-white);
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .route-map h2 {
+      font-size: 1.6rem;
+      color: var(--color-ocean);
+      margin-bottom: 0.5rem;
+    }
+
+    .route-map .subtitle {
+      font-family: var(--font-sans);
+      color: var(--color-text-light);
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+    }
+
+    .route-stages {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .route-dot {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+      background: var(--color-sand);
+      color: var(--color-text-light);
+      border: 1px solid var(--color-warm);
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+
+    .route-dot:hover {
+      background: var(--color-ocean);
+      color: var(--color-white);
+      border-color: var(--color-ocean);
+    }
+
+    .route-line {
+      display: flex;
+      align-items: center;
+      color: var(--color-earth);
+      font-size: 0.8rem;
+    }
+
+    /* ============ STAGE SECTIONS ============ */
+    .stage {
+      padding: 5rem 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .stage:nth-child(even) { background: transparent; }
+
+    .stage-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .stage-number {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--color-accent);
+    }
+
+    .stage h2 {
+      font-size: 1.8rem;
+      color: var(--color-ocean);
+    }
+
+    .stage-meta {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      color: var(--color-text-light);
+      margin-bottom: 2rem;
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .stage-meta span {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    /* ============ TERRAIN DESCRIPTION ============ */
+    .stage-terrain {
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      color: var(--color-text);
+      background: var(--color-warm);
+      border-radius: 8px;
+      padding: 0.9rem 1.2rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    /* ============ EXPANDABLE STORY ============ */
+    .story-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--color-ocean);
+      background: none;
+      border: 1px solid var(--color-ocean-light);
+      border-radius: 2rem;
+      padding: 0.45rem 1.1rem;
+      cursor: pointer;
+      margin: 0.5rem 0 1rem;
+      transition: all 0.2s;
+    }
+
+    .story-toggle:hover {
+      background: var(--color-ocean);
+      color: var(--color-white);
+      border-color: var(--color-ocean);
+    }
+
+    .story-toggle .arrow {
+      display: inline-block;
+      transition: transform 0.3s;
+      font-style: normal;
+    }
+
+    .story-toggle.open .arrow { transform: rotate(180deg); }
+
+    .stage-story {
+      font-size: 1.05rem;
+      margin-bottom: 2rem;
+      display: none;
+    }
+
+    .stage-story.open { display: block; }
+
+    .stage-story p { margin-bottom: 1rem; }
+
+    .stage-photos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .stage-photos img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 8px;
+      transition: transform 0.3s;
+    }
+
+    .stage-photos img:hover { transform: scale(1.02); }
+
+    .photo-full {
+      width: 100%;
+      margin: 2rem 0;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .photo-full img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+    }
+
+    /* ============ TIP BOX ============ */
+    .tip-box {
+      background: var(--color-white);
+      border-left: 4px solid var(--color-accent);
+      border-radius: 0 8px 8px 0;
+      padding: 1.5rem 2rem;
+      margin: 2rem 0;
+    }
+
+    .tip-box h4 {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--color-accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .tip-box p, .tip-box ul {
+      font-size: 0.95rem;
+      color: var(--color-text-light);
+    }
+
+    .tip-box ul {
+      padding-left: 1.2rem;
+      margin-top: 0.5rem;
+    }
+
+    .tip-box li { margin-bottom: 0.3rem; }
+
+    /* ============ HOTEL CARD ============ */
+    .hotel-card {
+      background: var(--color-white);
+      border-radius: 8px;
+      padding: 1.5rem 2rem;
+      margin: 1.5rem 0;
+      border: 1px solid var(--color-warm);
+    }
+
+    .hotel-card h4 {
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--color-ocean);
+      margin-bottom: 0.3rem;
+    }
+
+    .hotel-card .hotel-detail {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      color: var(--color-text-light);
+    }
+
+    .hotel-card .hotel-detail span {
+      display: inline-block;
+      margin-right: 1.5rem;
+    }
+
+    /* ============ DIVIDER ============ */
+    .stage-divider {
+      max-width: 900px;
+      margin: 0 auto;
+      border: none;
+      border-top: 1px solid var(--color-warm);
+    }
+
+    /* ============ TIPS SECTION ============ */
+    .tips-section {
+      background: var(--color-white);
+      padding: 5rem 2rem;
+    }
+
+    .tips-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .tips-section h2 {
+      font-size: 2rem;
+      color: var(--color-ocean);
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .tips-category h3 {
+      font-size: 1.1rem;
+      color: var(--color-earth);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--color-accent);
+    }
+
+    .tips-category ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .tips-category li {
+      padding: 0.5rem 0;
+      padding-left: 1.2rem;
+      position: relative;
+      font-size: 0.95rem;
+      color: var(--color-text-light);
+    }
+
+    .tips-category li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--color-accent);
+    }
+
+    /* ============ FOOTER ============ */
+    .footer {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: var(--color-ocean);
+      color: var(--color-white);
+    }
+
+    .footer h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer p {
+      font-size: 1rem;
+      opacity: 0.8;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    /* ============ NAV ============ */
+    .top-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      background: rgba(46, 107, 138, 0.95);
+      backdrop-filter: blur(10px);
+      color: var(--color-white);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transform: translateY(-100%);
+      transition: transform 0.3s;
+    }
+
+    .top-nav.visible { transform: translateY(0); }
+
+    .top-nav a {
+      color: var(--color-white);
+      text-decoration: none;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+
+    .top-nav a:hover { opacity: 1; }
+
+    .nav-links { display: flex; gap: 1.5rem; }
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 600px) {
+      .stage { padding: 3rem 1.2rem; }
+      .stage-photos { grid-template-columns: 1fr; }
+      .hero-meta { flex-direction: column; align-items: center; gap: 0.5rem; }
+      .tips-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+
+      /* Hero */
+      .hero { height: 50vh; min-height: 320px; }
+      .hero h1 { font-size: 2rem; }
+
+      /* Route dots — компактнее на мобилке */
+      .route-stages { gap: 0.3rem; }
+      .route-dot { font-size: 0.72rem; padding: 0.4rem 0.7rem; }
+      .route-line { font-size: 0.7rem; }
+
+      /* Видео — на всю ширину */
+      video { width: 100% !important; height: auto !important; }
+
+      /* Intro */
+      .intro { padding: 2.5rem 1.2rem !important; }
+
+      /* Карточки отелей */
+      .hotel-card .hotel-detail span { display: block; margin-right: 0; margin-bottom: 0.2rem; }
+
+      /* Секция советов */
+      .tips-section { padding: 3rem 1.2rem; }
+
+      /* Section nav */
+      nav[style] { gap: 1.2rem !important; padding: 0.8rem 1rem !important; }
+    }
+
+    /* ============ LIGHTBOX ============ */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox.active { display: flex; }
+
+    .lightbox-inner {
+      position: relative;
+      max-width: 90vw;
+      max-height: 90vh;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .lightbox-content {
+      max-width: 80vw;
+      max-height: 85vh;
+      border-radius: 8px;
+      object-fit: contain;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #1a1a1a;
+      min-width: 300px;
+      min-height: 300px;
+      color: #666;
+      font-family: var(--font-sans);
+      font-size: 1rem;
+    }
+
+    .lightbox-btn {
+      background: rgba(255,255,255,0.15);
+      border: none;
+      color: white;
+      font-size: 1.8rem;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+    .lightbox-btn:hover { background: rgba(255,255,255,0.3); }
+
+    .lightbox-close {
+      position: absolute;
+      top: -48px;
+      right: 0;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      opacity: 0.7;
+    }
+    .lightbox-close:hover { opacity: 1; }
+
+    .lightbox-counter {
+      position: absolute;
+      bottom: -36px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.6);
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+    }
+
+    /* ============ ANIMATIONS ============ */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Fixed Navigation -->
+  <nav class="top-nav" id="topNav">
+    <a href="#top"><strong>Камино де Сантьяго</strong></a>
+    <div class="nav-links">
+      <a href="#route">Маршрут</a>
+      <a href="#stages">Этапы</a>
+      <a href="#tips">Советы</a>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="top">
+    <div class="hero-content">
+      <h1>Камино де Сантьяго</h1>
+      <p class="hero-subtitle">Португальский прибрежный путь: от Порту до Сантьяго-де-Компостела</p>
+      <div class="hero-meta">
+        <span>📍 ~265 км</span>
+        <span>🗓 Август 2025</span>
+        <span>🚶 14 дней</span>
+      </div>
+    </div>
+    <div class="scroll-hint">↓ Листайте вниз</div>
+  </section>
+
+  <!-- ============ SECTION NAV ============ -->
+  <nav style="background:var(--color-white); padding:1rem 2rem; display:flex; gap:2rem; justify-content:center; border-bottom:1px solid var(--color-warm); font-family:var(--font-sans); font-size:0.9rem;">
+    <a href="#route" style="color:var(--color-ocean); text-decoration:none;">Маршрут</a>
+    <a href="#stages" style="color:var(--color-ocean); text-decoration:none;">Этапы</a>
+    <a href="#tips" style="color:var(--color-ocean); text-decoration:none;">Советы</a>
+  </nav>
+
+  <!-- ============ INTRO ============ -->
+  <section class="intro fade-in" style="text-align:left; max-width:720px; margin:0 auto; padding:4rem 2rem;">
+    <h2 style="text-align:left;">Мой формат</h2>
+    <p>Я шла одна. Жильё миксовала: альберге, обычные отели, иногда что-то особенное — маяк или отель у водопада. Заранее спланированный маршрут, заранее забронированные места.</p>
+    <p>Главное правило: без фанатизма. Это был мой отпуск, и я отдыхала. Если в какой-то день понимала, что 26 км — это перебор, сокращала маршрут: такси, автобус, поезд. Без угрызений совести.</p>
+    <p>Этот гайд написан именно в таком духе — практично и честно.</p>
+  </section>
+
+  <!-- ============ ROUTE MAP ============ -->
+  <section class="route-map" id="route">
+    <h2>Маршрут</h2>
+    <p class="subtitle">Португальский прибрежный путь (Caminho Português da Costa)</p>
+    <div class="route-stages">
+      <a href="#day1" class="route-dot">Matosinhos<br><small>старт</small></a>
+      <span class="route-line">→</span>
+      <a href="#day2" class="route-dot">Vila do Conde<br><small>~23 км</small></a>
+      <span class="route-line">→</span>
+      <a href="#day3" class="route-dot">Marinhas<br><small>~49 км</small></a>
+      <span class="route-line">→</span>
+      <a href="#day4" class="route-dot">Viana do Castelo<br><small>~79 км</small></a>
+      <span class="route-line">→</span>
+      <a href="#day5" class="route-dot">Âncora → Испания<br><small>~97 км</small></a>
+      <span class="route-line">→</span>
+      <a href="#day6" class="route-dot">Baiona<br><small>~139 км</small></a>
+      <span class="route-line">→</span>
+      <a href="#day7" class="route-dot">Vigo<br><small>~164 км</small></a>
+      <span class="route-line">→</span>
+      <a href="#day9" class="route-dot">Arcade<br><small>~180 км</small></a>
+      <span class="route-line">→</span>
+      <a href="#day10" class="route-dot">Pontevedra<br><small>~198 км</small></a>
+      <span class="route-line">→</span>
+      <a href="#day11" class="route-dot">Caldas de Reis<br><small>~220 км</small></a>
+      <span class="route-line">→</span>
+      <a href="#day13" class="route-dot">Padrón<br><small>~238 км</small></a>
+      <span class="route-line">→</span>
+      <a href="#day14" class="route-dot">Santiago ✨<br><small>~263 км</small></a>
+    </div>
+  </section>
+
+  <!-- ============ STAGES ============ -->
+  <div id="stages">
+
+    <!-- DAY 1 -->
+    <section class="stage fade-in" id="day1">
+      <div class="stage-header">
+        <span class="stage-number">День 1</span>
+        <h2>Matosinhos → Vila do Conde</h2>
+      </div>
+      <div class="stage-meta">
+        <span>📏 ~23 км</span>
+        <span>🗓 10 августа 2025</span>
+      </div>
+      <p class="stage-terrain">🌊 Деревянные настилы вдоль пляжей, весь день рядом с океаном. Плоский рельеф, лёгкий старт.</p>
+
+      <div class="stage-photos gallery" data-gallery="day1">
+        <img class="gallery-item" src="photos/day-01-porto/IMG_4158.jpg" alt="День 1" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-01-porto/IMG_4235.jpg" alt="День 1" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-01-porto/IMG_4267.jpg" alt="День 1" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-01-porto/IMG_4243.jpg" alt="День 1" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-01-porto/od_photo-1117_singular_display_fullPicture 3.jpg" alt="День 1" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-01-porto/IMG_4275.jpg" alt="День 1" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+      </div>
+
+      <div class="stage-story">
+        <p>Первый штамп в креденсиале — и всё, путь начался. Почти сразу маршрут вывел к океану, и дальше он сопровождал меня весь день. Деревянные настилы вдоль пляжей, ветер, бесконечный горизонт. Для ног — идеально, для головы — медитация.</p>
+        <p>Проходя через Praia de Angeiras, я попала на Festa de Nossa Senhora dos Navegantes — праздник в честь покровительницы моряков. Украшенные лодки, морская процессия, ковры из живых цветов (tapetes de flores) на улицах. Это было не туристическое шоу, а живая традиция маленькой рыбацкой деревни. И ощущение, будто Camino сразу меня поприветствовал.</p>
+        <p>Финиш в Vila do Conde — небольшой, уютный, без претензий. Именно то, что нужно после первого дня.</p>
+        <p><strong>Первый день задал очень высокую планку.</strong></p>
+      </div>
+
+      <div class="hotel-card">
+        <h4>🍽 Где обедала</h4>
+        <div class="hotel-detail">
+          <a href="https://www.tripadvisor.com/Restaurant_Review-g8294623-d9750138-Reviews-Restaurante_Ruben_s_Dunas-Vila_Cha_Vila_do_Conde_Porto_District_Northern_Po.html" target="_blank" style="color:var(--color-ocean)">Restaurante Ruben's Dunas</a>
+          <span>Av. Marginal, Vila Chã, Vila do Conde</span>
+        </div>
+      </div>
+
+      <div class="hotel-card">
+        <h4>🏨 Где жила</h4>
+        <div class="hotel-detail">
+          <a href="https://www.booking.com/hotel/pt/hospedaria-venceslau.html" target="_blank" style="color:var(--color-ocean)">Venceslau Wine Boutique Hostel — €74.80</a>
+          <span>Rua das Mós 13/15, Vila do Conde</span>
+        </div>
+      </div>
+
+      <div class="tip-box">
+        <h4>💡 Меню паломника — обязательно спрашивайте</h4>
+        <p>Во многих ресторанах есть специальное «меню паломника» (menú del peregrino) — его нет в обычном меню, надо просто спросить. Цена от 8 до 12 € в зависимости от места — и это полноценный обед.</p>
+      </div>
+    </section>
+
+    <hr class="stage-divider">
+
+    <!-- DAY 2 -->
+    <section class="stage fade-in" id="day2">
+      <div class="stage-header">
+        <span class="stage-number">День 2</span>
+        <h2>Vila do Conde → Marinhas</h2>
+      </div>
+      <div class="stage-meta">
+        <span>📏 ~26 км</span>
+        <span>🗓 11 августа 2025</span>
+        <span>🚇 Короткий переезд до Póvoa de Varzim</span>
+      </div>
+      <p class="stage-terrain">🌊 Снова вдоль океана — чуть больше цивилизации, чуть меньше дикости, но всё так же красиво.</p>
+      <div class="stage-photos gallery" data-gallery="day2">
+        <img class="gallery-item" src="photos/day-02-vila-do-conde/IMG_4284.jpg" alt="День 2" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-02-vila-do-conde/IMG_2165.jpg" alt="День 2" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-02-vila-do-conde/IMG_4345.jpg" alt="День 2" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-02-vila-do-conde/od_photo-1198_singular_display_fullPicture.jpg" alt="День 2" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-02-vila-do-conde/photo-1231_singular_display_fullPicture.jpg" alt="День 2" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-02-vila-do-conde/IMG_4354.jpg" alt="День 2" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+      </div>
+      <div class="stage-story">
+        <p>Понедельник в Португалии — сложный день для завтрака. В Vila do Conde кафе открыты, но только в формате «кофе и выпечка». Нормального завтрака — яиц, горячего — не найти. Ближайшее место, где можно было поесть по-человечески, было только в Póvoa de Varzim. Я заранее присмотрела там <a href="https://www.tripadvisor.com/Restaurant_Review-g189181-d33015822-Reviews-Essencials_Cafe_Ayurveda-Povoa_de_Varzim_Porto_District_Northern_Portugal.html" target="_blank" style="color:var(--color-ocean)">Essencials Café &amp; Ayurveda</a> — и решила просто доехать на метро. Заодно сократила маршрут: 26 км после первого дня — это уже много, я это к тому моменту хорошо понимала.</p>
+        <p>После нормального завтрака вышла в путь уже в ресурсном состоянии. День снова шёл вдоль океана. Чуть меньше «дикости», чуть больше цивилизации, но всё так же красиво.</p>
+        <p>У Praia de Apúlia не смогла пройти мимо — потрясающий песчаный пляж, помочила ноги и двинулась дальше. Там же по дороге стояли несколько очень классных рыбных ресторанов прямо у воды. Я пошла мимо — и пожалела. Дальше в городе всё оказалось закрыто: понедельник. Поела где попалось.</p>
+        <p>Финиш в Marinhas порадовал: отель с бассейном. Да, стоит у трассы рядом с заправкой — не самая романтичная локация. Но внутри всё достойно, а возможность опустить ноги в холодную воду после долгого дня — это чистый кайф.</p>
+      </div>
+
+      <div class="tip-box">
+        <h4>💡 Еда на этом отрезке</h4>
+        <p>Летом в понедельник многие кафе закрыты или работают в ограниченном режиме — планируйте заранее. На этом переходе лучшее место для еды — рестораны сразу после пляжа Praia de Apúlia: несколько классных заведений подряд прямо на маршруте. Не проходите мимо — дальше до Marinhas ничего сравнимого.</p>
+      </div>
+
+      <div class="hotel-card">
+        <h4>☕ Где завтракала</h4>
+        <div class="hotel-detail">
+          <span><a href="https://www.tripadvisor.com/Restaurant_Review-g189181-d33015822-Reviews-Essencials_Cafe_Ayurveda-Povoa_de_Varzim_Porto_District_Northern_Portugal.html" target="_blank" style="color:var(--color-ocean)">Essencials Café &amp; Ayurveda</a> — Póvoa de Varzim</span>
+        </div>
+      </div>
+      <div class="hotel-card">
+        <h4>🏨 Где жила</h4>
+        <div class="hotel-detail">
+          <a href="https://www.booking.com/hotel/pt/marinhas-bed-amp-breakfast.html" target="_blank" style="color:var(--color-ocean)">Marinhas Bed &amp; Breakfast — €30</a>
+          <span>Av. 19 de Agosto 5049, Marinhas</span>
+        </div>
+      </div>
+    </section>
+
+    <hr class="stage-divider">
+
+    <!-- DAY 3 -->
+    <section class="stage fade-in" id="day3">
+      <div class="stage-header">
+        <span class="stage-number">День 3</span>
+        <h2>Marinhas → Viana do Castelo</h2>
+      </div>
+      <div class="stage-meta">
+        <span>📏 ~24 км</span>
+        <span>🗓 12 августа 2025</span>
+        <span>🚌 Автобус в конце этапа</span>
+      </div>
+      <p class="stage-terrain">🌲 Начало по побережью, затем уход на классический маршрут: леса, тень, старые деревни, мягкие тропы.</p>
+            <div class="stage-photos gallery" data-gallery="day3">
+        <img class="gallery-item" src="photos/day-03-esposende/IMG_2170.jpg" alt="День 3" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-03-esposende/IMG_2166.jpg" alt="День 3" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-03-esposende/IMG_2168.jpg" alt="День 3" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-03-esposende/IMG_2169.jpg" alt="День 3" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-03-esposende/od_photo-1459_singular_display_fullPicture.jpg" alt="День 3" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-03-esposende/IMG_4411.jpg" alt="День 3" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+      </div>
+      <div class="stage-story">
+        <p>Третий день всё изменил. Я ушла с прибрежного варианта на классический маршрут — Camino Portugues — и людей стало резко больше. Если раньше я шла почти одна, то теперь ты постоянно в потоке: кто-то впереди, кто-то позади.</p>
+        <p>Пейзаж стал другим — старая деревня, леса, тень, мягкие тропы.</p>
+        <p>К концу дня ноги болели серьёзно. У моста через Лиму я приняла решение проехать пару остановок на автобусе — это был вопрос сохранения ресурса.</p>
+        <p>Хостел находился на холме рядом с Santa Luzia. Пешком — нереально, фуникулёр — с часовой очередью. Я взяла такси и приехала за минуту до открытия. А правило было простое: кто первый — тот выбирает кровать.</p>
+        <p><strong>Я была первой.</strong></p>
+        <p>Viana do Castelo — живой город. Здесь есть торговый центр Estação Viana Shopping и большой JD Sports. Это последняя удобная точка, где можно что-то докупить перед более сельскими участками.</p>
+        <p>Вечером все собрались смотреть закат. Вид с холма — фантастический. Да, в комнате был человек, который храпел так, что не спал, кажется, никто. Но даже это не испортило впечатление. Закат был сильнее.</p>
+      </div>
+
+      <div class="tip-box">
+        <h4>💡 Совет</h4>
+        <p>Viana do Castelo — последняя удобная точка для шоппинга. Estação Viana Shopping + JD Sports. Докупите всё, что нужно, дальше будет сельская местность.</p>
+      </div>
+
+      <div class="hotel-card">
+        <h4>🏨 Где жила</h4>
+        <div class="hotel-detail">
+          <a href="https://confrariadesantaluzia.pt/en/albergue/" target="_blank" style="color:var(--color-ocean)">Albergue de Santa Luzia — Peregrinos de Santiago — €44</a>
+          <span>Monte Santa Luzia 176, Viana do Castelo</span>
+        </div>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; color:var(--color-text-light); margin-top:0.6rem;">Потрясающая локация на холме прямо у главного храма — с нереальными видами на город и океан. Альберге удобный и хорошо организованный. Очень рекомендую.</p>
+      </div>
+    </section>
+
+    <hr class="stage-divider">
+
+    <!-- DAY 4 -->
+    <section class="stage fade-in" id="day4">
+      <div class="stage-header">
+        <span class="stage-number">День 4</span>
+        <h2>Viana do Castelo → Vila Praia de Âncora</h2>
+      </div>
+      <div class="stage-meta">
+        <span>📏 ~18 км</span>
+        <span>🗓 13 августа 2025</span>
+        <span>🚂 Короткий поезд из Afife</span>
+      </div>
+      <p class="stage-terrain">🪨 Дикая северная местность, движение в сторону границы. Внимание: длинный участок брусчатки в Afife — болезненно для стоп.</p>
+            <div class="stage-photos gallery" data-gallery="day4">
+        <img class="gallery-item" src="photos/day-04-viana-do-castelo/IMG_2172.jpg" alt="День 4" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-04-viana-do-castelo/IMG_4489.jpg" alt="День 4" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-04-viana-do-castelo/od_photo-1657_singular_display_fullPicture.jpg" alt="День 4" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-04-viana-do-castelo/od_photo-1678_singular_display_fullPicture.jpg" alt="День 4" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-04-viana-do-castelo/photo-1527_singular_display_fullPicture.jpg" alt="День 4" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-04-viana-do-castelo/IMG_4434.jpg" alt="День 4" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+      </div>
+      <div class="stage-story">
+        <p>Проснулась необычайно рано и пошла смотреть рассвет. Это был, наверное, самый красивый момент за всё путешествие. Хостел стоит на холме прямо над морем — внизу лежала дымка, и над этим всем вставало солнце. Просто нечто.</p>
+        <p>Почти все ушли рано — у многих был запланирован переход границы. У меня план был мягче: дойти до города перед границей и перейти её утром.</p>
+        <p>Маршрут стал более диким. Чувствовалось движение на север. Но в Afife был длинный участок брусчатки — и это было невыносимо больно для стоп. Я честно поняла: дальше идти сейчас — значит усугубить.</p>
+        <p>Нашла поезд, проехала одну остановку.</p>
+      </div>
+
+      <div class="hotel-card">
+        <h4>🏨 Где жила</h4>
+        <div class="hotel-detail">
+          <a href="https://quintadaquinhas.pt/" target="_blank" style="color:var(--color-ocean)">Quinta da Quinhas ⭐ — €46.50</a>
+          <span>88 Rua de Bulhente, Vila Praia de Âncora</span>
+        </div>
+        <p style="font-family: var(--font-sans); font-size: 0.85rem; color: var(--color-text-light); margin-top: 0.6rem;">Формально хостел, но по ощущению — деревня у бабушки. Rural area, животные, абсолютная тишина и уют. Одно из самых атмосферных мест на всём маршруте. Уходить не хотелось совсем.</p>
+      </div>
+    </section>
+
+    <hr class="stage-divider">
+
+    <!-- DAY 5 -->
+    <section class="stage fade-in" id="day5">
+      <div class="stage-header">
+        <span class="stage-number">День 5</span>
+        <h2>Vila Praia de Âncora → A Mariña</h2>
+      </div>
+      <div class="stage-meta">
+        <span>📏 ~25 км</span>
+        <span>🗓 14 августа 2025</span>
+        <span>🌍 Пересечение границы с Испанией</span>
+      </div>
+      <p class="stage-terrain">🌊🌲 Побережье, затем лес и переправа на лодке через реку Миньо. После границы — полтора часа в полном одиночестве через лес.</p>
+      <div class="stage-photos gallery" data-gallery="day5">
+        <img class="gallery-item" src="photos/day-05-caminha/IMG_2207.jpg" alt="День 5" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-05-caminha/IMG_4542.jpg" alt="День 5" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-05-caminha/photo-2023_singular_display_fullPicture.jpg" alt="День 5" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-05-caminha/IMG_2209.jpg" alt="День 5" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-05-caminha/photo-2112_singular_display_fullPicture.jpg" alt="День 5" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-05-caminha/IMG_2433.jpg" alt="День 5" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+      </div>
+      <div class="stage-story">
+        <p>Вышла из отеля и прошла через маленький симпатичный Анкору — городок, который хочется рассмотреть не спеша. Но маршрут звал вперёд. Весь день путь шёл вдоль океана: открытый, ветреный, почти без тени. Чем ближе к границе — тем более дикими и пустынными становились места.</p>
+        <p>Потом был небольшой лес — и выход к реке Миньо. Именно здесь проходит граница между Португалией и Испанией, и именно здесь происходит один из самых необычных моментов всего маршрута: переправа.</p>
+        <p>Из-за сильного обмеления реки паромы больше не ходят. Теперь паломников перевозят только на маленьких лодках. В этот день людей почти не было — в лодке оказались только я и двое велосипедистов. Тихо, неспешно, с видом на обе страны сразу.</p>
+        <p>На испанском берегу — полная тишина. Город казался практически пустым, ни души. Зашла в старую церковь поставить штамп паломника. Потом путь пошёл через холм и лес.</p>
+        <p>Этот лесной отрезок — около полутора часов в полном одиночестве — стал одним из самых атмосферных моментов всего Камино. Ни одного человека вокруг. Немного страшно. И именно поэтому — по-настоящему особенно.</p>
+      </div>
+
+      <div class="tip-box">
+        <h4>💡 Важно: переправа через реку Миньо</h4>
+        <p>Паром из Каминьи в А Гуарду не ходит с 2023 года — река сильно обмелела. Паломников перевозят лодки-такси: ~€6 за человека, переправа около 10 минут. Лодки отправляются каждые 30 минут с 7:00 до 17:00 (по португальскому времени — Испания на час вперёд). Лодки маленькие, иногда всего 6 мест — в сезон лучше бронировать заранее на <a href="https://xacobeotransfer.com" target="_blank" style="color:var(--color-ocean)">xacobeotransfer.com</a>. Альтернатива — пешком по мосту через Виланова-ди-Сервейра (12 км севернее).</p>
+      </div>
+
+      <div class="hotel-card">
+        <h4>🍽 Где ела</h4>
+        <div class="hotel-detail">
+          <span>Pizzeria di Marco — A Guarda</span>
+        </div>
+      </div>
+
+      <div class="hotel-card">
+        <h4>🏨 Где жила</h4>
+        <div class="hotel-detail">
+          <a href="https://www.booking.com/hotel/es/aloxamento-a-marina.html" target="_blank" style="color:var(--color-ocean)">Aloxamento A Mariña — €80</a>
+          <span>Estrada Vista Alegre, 35, A Mariña, Pontevedra</span>
+        </div>
+        <p style="font-family: var(--font-sans); font-size: 0.85rem; color: var(--color-text-light); margin-top: 0.6rem;">Апартаменты с прямым видом на океан из окна. Один из лучших видов на всём маршруте — и это после первого дня в Испании. Бонусом прилагаются две маленькие собачки-попрошайки. 🐶</p>
+      </div>
+    </section>
+
+    <hr class="stage-divider">
+
+    <!-- DAY 6 -->
+    <section class="stage fade-in" id="day6">
+      <div class="stage-header">
+        <span class="stage-number">День 6</span>
+        <h2>A Mariña → Baiona</h2>
+      </div>
+      <div class="stage-meta">
+        <span>📏 ~17 км</span>
+        <span>🗓 15 августа 2025</span>
+        <span>🌫 Туман и ветер</span>
+      </div>
+      <p class="stage-terrain">🌊🛣️ Побережье, небольшой лес, затем длинный участок вдоль трассы — но с широкой выделенной дорожкой для паломников.</p>
+      <div class="stage-photos gallery" data-gallery="day6">
+        <img class="gallery-item" src="photos/day-06-a-guarda/IMG_2436.jpg" alt="День 6" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-06-a-guarda/IMG_2435.jpg" alt="День 6" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-06-a-guarda/IMG_4664.jpg" alt="День 6" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-06-a-guarda/photo-2395_singular_display_fullPicture.jpg" alt="День 6" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-06-a-guarda/IMG_2437.jpg" alt="День 6" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-06-a-guarda/od_photo-2408_singular_display_fullPicture.jpg" alt="День 6" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+      </div>
+      <div class="stage-story">
+        <p>Вышла из Амариньи без спешки — день обещал быть коротким, километров пятнадцать-семнадцать, и я это знала. Сначала маршрут шёл вдоль океана, потом нырнул в небольшой лес. А затем — длинный участок вдоль трассы.</p>
+        <p>Звучит неприятно, но на деле оказалось терпимо: для паломников была выделена отдельная дорожка — широкая, размеченная яркой краской. Идти было комфортно и не страшно, хотя погода в этот день явно была не на моей стороне. Туман, сильный ветер, я даже немного замёрзла. Не самый живописный день пути.</p>
+        <p>Но финиш всё компенсировал. Меня ждал отель в маяке — Faro Silleiro. Совсем новый, открытый буквально за год до этого, в старом здании настоящего маяка. Снаружи — сильнейший ветер с океана. Внутри — абсолютная тишина, тепло, уют. Контраст был фантастический.</p>
+        <p>Я решила себя побаловать. В соседнем отеле, минутах в двадцати пешком, оказался большой спа-центр. Позвонила, записалась. Спа с разными температурами воды, фонтанчиками, зонами отдыха — около 55 евро. Добавила массаж — ещё примерно 30. Это было именно то, что нужно было телу после нескольких дней подряд на ногах.</p>
+      </div>
+
+      <div class="tip-box">
+        <h4>💡 Спа на середине маршрута</h4>
+        <p>В нескольких минутах ходьбы находится спа-отель Talasa Atlántica. Номер стоит около 100–150 €, вход в спа и массаж — отдельно. Если хочется себя побаловать после нескольких дней пути — очень рекомендую. Отличное место, чтобы восстановиться.</p>
+      </div>
+
+      <div class="hotel-card">
+        <h4>🏨 Где жила</h4>
+        <div class="hotel-detail">
+          <a href="https://farosilleirohotel.com/en/" target="_blank" style="color:var(--color-ocean)">Faro Silleiro ⭐ (отель в маяке) — €280</a>
+          <span>Estrada Baiona - A Guarda, Pontevedra</span>
+        </div>
+      </div>
+    </section>
+
+    <hr class="stage-divider">
+
+    <!-- DAY 7 -->
+    <section class="stage fade-in" id="day7">
+      <div class="stage-header">
+        <span class="stage-number">День 7</span>
+        <h2>Baiona → Vigo</h2>
+      </div>
+      <div class="stage-meta">
+        <span>📏 ~15 км пешком + 🚌 автобус из Oia</span>
+        <span>🗓 16 августа 2025</span>
+      </div>
+      <p class="stage-terrain">⛰️ Подъём через холм, деревни. До Oia — пешком, дальше автобус до Виго.</p>
+      <div class="stage-photos gallery" data-gallery="day7">
+        <img class="gallery-item" src="photos/day-07-baiona/photo-2512_singular_display_fullPicture.jpg" alt="День 7" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-07-baiona/IMG_2439.jpg" alt="День 7" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-07-baiona/IMG_2441.jpg" alt="День 7" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-07-baiona/IMG_4798.jpg" alt="День 7" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-07-baiona/od_photo-2624_singular_display_fullPicture.jpg" alt="День 7" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-07-baiona/photo-2677_singular_display_fullPicture.jpg" alt="День 7" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+      </div>
+      <div class="stage-story">
+        <p>В этот день я решила по-максимуму воспользоваться отелем и никуда не спешить. Дождалась позднего выезда в 12:00, успела поплавать в бассейне — погода наконец-то улучшилась, и это было слишком хорошо, чтобы упускать.</p>
+        <p>Вышла поздно, но план был несложным: дойти до Oia. Маршрут шёл через холм и дальше по маленьким деревням — тихо, зелено, без людей. Именно такие отрезки и запоминаются.</p>
+        <p>Oia — оживлённое туристическое местечко. Пообедала там, осмотрелась. А дальше приняла прагматичное решение: нашла автобус до Виго и поехала. Идти через город не хотелось — в городском асфальте мало того, ради чего идут на Камино. Природные участки — да, городские улицы — можно и пропустить.</p>
+        <p>Вечером заселилась в Hotel Atlántico Vigo. Впереди был заслуженный день отдыха.</p>
+      </div>
+
+      <div class="tip-box">
+        <h4>💡 Совет</h4>
+        <p>Из Oia в Виго ходят автобусы — это разумная альтернатива городскому асфальту. Камино не обязывает идти ногами каждый метр: важно сохранить ресурс для тех участков, которые действительно стоят усилий.</p>
+      </div>
+
+      <div class="hotel-card">
+        <h4>🏨 Где жила</h4>
+        <div class="hotel-detail">
+          <a href="https://www.hotelatlanticovigo.com/en/" target="_blank" style="color:var(--color-ocean)">Hotel Atlántico Vigo — €117.50</a>
+          <span>Rúa de García Barbón, 35, Vigo</span>
+        </div>
+      </div>
+    </section>
+
+    <hr class="stage-divider">
+
+    <!-- DAY 8 — REST DAY -->
+    <section class="stage fade-in" id="day8">
+      <div class="stage-header">
+        <span class="stage-number">День 8</span>
+        <h2>Виго — остров Онс</h2>
+      </div>
+      <div class="stage-meta">
+        <span>🗓 17 августа 2025</span>
+        <span>🏝 День-вылазка на остров</span>
+      </div>
+      <p class="stage-terrain">🏝️ Паром из Виго на остров Онс (1.5 ч). Пешие тропы по острову: скалы, лес, дикие пляжи.</p>
+      <div class="stage-photos gallery" data-gallery="day8">
+        <img class="gallery-item" src="photos/day-08-vigo/IMG_4859.jpg" alt="День 8" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-08-vigo/IMG_2444.jpg" alt="День 8" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-08-vigo/IMG_4844.jpg" alt="День 8" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-08-vigo/IMG_4853.jpg" alt="День 8" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-08-vigo/IMG_4858.jpg" alt="День 8" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-08-vigo/IMG_4917.jpg" alt="День 8" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+      </div>
+      <div class="stage-story">
+        <p>День отдыха — но не совсем. Я запланировала вылазку на остров Онс (Isla de Ons) — охраняемый природный заповедник в Атлантическом океане, в получасе от Виго на пароме. Это одно из тех мест, ради которых стоит закладывать день отдыха именно здесь.</p>
+        <p>Есть два архипелага — Онс (Ons) и Сиес (Cíes). На Сиес к тому моменту уже всё было раскуплено. Повезло с Онс.</p>
+        <p>Отплыла в 11 утра, паром идёт около полутора часов, обратно — в 17:00. Итого на острове около шести часов: в самый раз, не много и не мало.</p>
+        <p>Онс — небольшой, но очень красивый. Скалы, небольшие леса, дикие тропы. Можно уйти так, что вокруг — ни одного человека. Маршруты несложные: по сути, идёшь налево до конца острова, потом направо — и весь остров уже твой. Быстро, но насыщенно.</p>
+        <p>Главное гастрономическое открытие дня — замбуриньяс (zamburiñas) в Casa Acuña. Маленькие галисийские гребешки на гриле. Самые вкусные за всё путешествие — просто фантастика.</p>
+      </div>
+
+      <div class="tip-box">
+        <h4>💡 Как попасть на острова — пошагово</h4>
+        <ul>
+          <li><strong>Шаг 1:</strong> Запросите пропуск на официальном сайте Хунты Галисии: <a href="https://autorizacionillasatlanticas.xunta.gal/illasr/inicio" target="_blank" style="color:var(--color-ocean)">autorizacionillasatlanticas.xunta.gal</a>. Лимит посетителей строгий — бронируйте за 1–2 месяца в сезон.</li>
+          <li><strong>Шаг 2:</strong> После одобрения придёт код. Действует около 30 минут — за это время нужно купить билет на паром на сайте паромной компании, например <a href="https://xacobeotransfer.com" target="_blank" style="color:var(--color-ocean)">xacobeotransfer.com</a>.</li>
+          <li>Онс и Сиес — оба стоят поездки. Если один раскуплен, проверяйте второй.</li>
+        </ul>
+      </div>
+
+      <div class="hotel-card">
+        <h4>🍽 Где ела</h4>
+        <div class="hotel-detail">
+          <a href="https://isladeons.net/restaurante-casa-acuna/" target="_blank" style="color:var(--color-ocean)">Casa Acuña — остров Онс</a>
+        </div>
+        <p style="font-family: var(--font-sans); font-size: 0.85rem; color: var(--color-text-light); margin-top: 0.6rem;">Замбуриньяс (zamburiñas) — маленькие гребешки на гриле. Лучшее, что я ела в жизни. Не за путешествие — в жизни вообще.</p>
+      </div>
+
+      <div class="hotel-card">
+        <h4>🏨 Где жила</h4>
+        <div class="hotel-detail">
+          <a href="https://www.hotelatlanticovigo.com/en/" target="_blank" style="color:var(--color-ocean)">Hotel Atlántico Vigo — €117.50</a>
+          <span>Rúa de García Barbón, 35, Vigo</span>
+        </div>
+      </div>
+    </section>
+
+    <hr class="stage-divider">
+
+    <!-- DAY 9 -->
+    <section class="stage fade-in" id="day9">
+      <div class="stage-header">
+        <span class="stage-number">День 9</span>
+        <h2>Vigo → Arcade</h2>
+      </div>
+      <div class="stage-meta">
+        <span>📏 ~16 км (полный этап) / часть 🚕 такси</span>
+        <span>🗓 18 августа 2025</span>
+      </div>
+      <p class="stage-terrain">🌲⛰️ Лес и подъём на холм с видами на залив Риа-де-Виго. Городскую часть Виго лучше объехать — холмисто и скучно.</p>
+      <div class="stage-photos gallery" data-gallery="day9">
+        <img class="gallery-item" src="photos/day-09-redondela/od_photo-3128_singular_display_fullPicture.jpg" alt="День 9" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-09-redondela/IMG_4932.jpg" alt="День 9" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-09-redondela/photo-3116_singular_display_fullPicture.jpg" alt="День 9" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-09-redondela/photo-3170_singular_display_fullPicture.jpg" alt="День 9" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-09-redondela/photo-3184_singular_display_fullPicture.jpg" alt="День 9" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-09-redondela/photo-3472_singular_display_fullPicture.jpg" alt="День 9" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+      </div>
+      <div class="stage-story">
+        <p>Виго — город красивый, но для пешего маршрута неудобный. Он очень гористый: постоянно вверх-вниз, вверх-вниз. И городская ходьба — это не то же самое, что Камино: светофор, ждёшь, переходишь, снова ждёшь. Удовольствия ноль.</p>
+        <p>Поэтому я поступила прагматично: с утра взяла такси до точки, где маршрут уже выходит на нормальный Камино, минуя городскую суету. А оттуда — пешком до Arcade. К тому моменту ноги уже порядком накопили усталость, и сокращать городские километры было правильным решением.</p>
+        <p>И вот тут маршрут себя показал во всей красе. Путь шёл через лес и лесистую местность, постепенно поднимаясь на холм. Подъём несложный, но именно за ним открывалось главное: виды на залив Риа-де-Виго — такое тихое внутреннее море, окружённое холмами. Очень красиво и совсем не ожидаешь такого после промышленного города позади.</p>
+      </div>
+
+      <div class="hotel-card">
+        <h4>🏨 Где жила</h4>
+        <div class="hotel-detail">
+          <a href="https://www.booking.com/hotel/es/gbc-arcade.html" target="_blank" style="color:var(--color-ocean)">Hotel SPA GBC Arcade — €89</a>
+          <span>Avenida Castelao 1, Arcade</span>
+        </div>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; color:var(--color-text-light); margin-top:0.6rem;">Совсем новый отель — и с тех пор там ещё добавили спа. При этом цена осталась практически той же. Очень достойный вариант, чтобы отдохнуть и восстановиться.</p>
+      </div>
+    </section>
+
+    <hr class="stage-divider">
+
+    <!-- DAY 10 -->
+    <section class="stage fade-in" id="day10">
+      <div class="stage-header">
+        <span class="stage-number">День 10</span>
+        <h2>Arcade → Pontevedra</h2>
+      </div>
+      <div class="stage-meta">
+        <span>📏 ~18 км</span>
+        <span>🗓 19 августа 2025</span>
+        <span>👥 Слияние маршрутов</span>
+      </div>
+      <p class="stage-terrain">🍇🌲 Виноградники, маленькие города, леса. Многолюдно: здесь сливаются несколько веток Камино.</p>
+      <div class="stage-photos gallery" data-gallery="day10">
+        <img class="gallery-item" src="photos/day-10-pontevedra/photo-3502_singular_display_fullPicture.jpg" alt="День 10" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-10-pontevedra/IMG_2446.jpg" alt="День 10" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-10-pontevedra/photo-3553_singular_display_fullPicture.jpg" alt="День 10" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-10-pontevedra/photo-3570_singular_display_fullPicture.jpg" alt="День 10" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-10-pontevedra/IMG_4998.jpg" alt="День 10" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-10-pontevedra/IMG_5005.jpg" alt="День 10" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+      </div>
+      <div class="stage-story">
+        <p>В Аркейде сходятся несколько маршрутов Камино — в том числе прибрежный и центральный португальский. Это сразу ощущается: с утра мы двинулись настоящей толпой. После тихих и пустынных участков первых дней — резкий контраст.</p>
+        <p>Маршрут шёл через небольшие городки, виноградники, красивые леса. И здесь стало заметно, насколько больше инфраструктуры для паломников ближе к Сантьяго. В лесу — буквально посреди деревьев — вдруг появлялся вагончик, где продают воду, пиво, кофе. Столики, стулья. Садишься, отдыхаешь, смотришь на лес. Это очень здорово.</p>
+        <p>Штампов для креденсиаля тоже стало больше — они попадались в самых неожиданных местах. Приятная охота, если вы коллекционируете печати.</p>
+        <p>В Понтеведру я пришла около полтретьего — и сразу захотелось погулять. Город того стоит. Классический галисийский старый город: тихие улочки, несколько соборов, часть из них полуразрушенная и оттого особенно атмосферная. Оказалось, что 18 августа — накануне моего прихода — здесь отмечали День паломника. Остаточное ощущение праздника всё ещё витало в воздухе. Я обошла соборы, посвящённые паломникам, посидела на площадях. Очень живой и красивый город. А вид из окна отеля на старый город — вообще отдельная история, я не ожидала такого.</p>
+      </div>
+
+      <div class="tip-box">
+        <h4>💡 Совет</h4>
+        <p>После Аркейде маршрут становится заметно многолюднее — здесь сливаются несколько ветвей Камино. Если цените тишину и одиночество, выходите пораньше, пока толпа ещё не собралась.</p>
+      </div>
+
+      <div class="hotel-card">
+        <h4>🏨 Где жила</h4>
+        <div class="hotel-detail">
+          <a href="https://www.hotel-donpepe.com/en/inicio-english/" target="_blank" style="color:var(--color-ocean)">Hotel Don Pepe — €90</a>
+          <span>Avenida a Barca, 24, Poio (Pontevedra)</span>
+        </div>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; color:var(--color-text-light); margin-top:0.6rem;">Сам отель простой и немного на отшибе — чтобы попасть в центр Понтеведры, нужно перейти мост. Но вид из окна того стоит: изгиб реки, старый город — смотришь и не веришь своим глазам. Ни разу не пожалела, что остановилась именно здесь.</p>
+      </div>
+    </section>
+
+    <hr class="stage-divider">
+
+    <!-- DAY 11 -->
+    <section class="stage fade-in" id="day11">
+      <div class="stage-header">
+        <span class="stage-number">День 11</span>
+        <h2>Pontevedra → Caldas de Reis</h2>
+      </div>
+      <div class="stage-meta">
+        <span>📏 ~22 км</span>
+        <span>🗓 20 августа 2025</span>
+      </div>
+      <p class="stage-terrain">🍇 В основном виноградники и поля, меньше леса. Много паломников, развитая инфраструктура по пути.</p>
+      <div class="stage-photos gallery" data-gallery="day11">
+        <img class="gallery-item" src="photos/day-11-caldas-de-reis/IMG_2449.jpg" alt="День 11" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-11-caldas-de-reis/IMG_2450.jpg" alt="День 11" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-11-caldas-de-reis/IMG_2451.jpg" alt="День 11" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-11-caldas-de-reis/IMG_5093.jpg" alt="День 11" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-11-caldas-de-reis/IMG_5098.jpg" alt="День 11" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-11-caldas-de-reis/IMG_5148.jpg" alt="День 11" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+      </div>
+      <div class="stage-story">
+        <p>Вышла около 10 утра — и снова в толпе. Чем ближе к Сантьяго, тем больше людей. Я постоянно пыталась вырваться вперёд или уйти в сторону, но поток не заканчивался.</p>
+        <p>Маршрут в этот день шёл в основном через виноградники — меньше леса, больше организованной инфраструктуры для паломников: кафе, закусочные, места отдыха. Удобно, но атмосфера уже другая.</p>
+        <p>Где-то на этом отрезке я потеряла свой паспорт паломника — креденсиаль. Обидно, но не критично: в любом albergue или церкви можно получить новый и продолжить собирать штампы.</p>
+        <p>Зато финиш дня был фантастическим. К трём часам я дошла до отеля, который специально выбрала для своего дня рождения. Torre do Río — небольшой бутик-отель, всего около десяти номеров, расположенный в здании старинной ткацкой фабрики прямо в лесу. Рядом горная речка, водопад. Всё сделано в натуральном стиле — камень, дерево, вода. Одно из самых красивых мест на всём маршруте.</p>
+      </div>
+
+      <div class="tip-box">
+        <h4>💡 Потеряли креденсиаль?</h4>
+        <p>Не паникуйте — это поправимо. Новый паспорт паломника можно получить в любой церкви, albergue или паломническом офисе. Для получения компостелы в Сантьяго достаточно штампов за последние 100 км.</p>
+      </div>
+
+      <div class="hotel-card">
+        <h4>🏨 Где жила</h4>
+        <div class="hotel-detail">
+          <a href="https://torredorio.es/en/hotel-caldas-de-reis/" target="_blank" style="color:var(--color-ocean)">Torre do Río ⭐ (отель в старой фабрике у водопада) — €175</a>
+          <span>San Andrés de César, 1, A Baxe, Pontevedra</span>
+        </div>
+      </div>
+    </section>
+
+    <hr class="stage-divider">
+
+    <!-- DAY 12 — REST DAY / BIRTHDAY -->
+    <section class="stage fade-in" id="day12">
+      <div class="stage-header">
+        <span class="stage-number">День 12</span>
+        <h2>День рождения в Калдас-де-Рейс 🎂</h2>
+      </div>
+      <div class="stage-meta">
+        <span>🗓 21 августа 2025</span>
+        <span>🛌 Полный отдых</span>
+      </div>
+      <p class="stage-terrain">🛌 День отдыха. Никуда не идём.</p>
+      <div class="stage-photos gallery" data-gallery="day12">
+        <img class="gallery-item" src="photos/day-12-caldas-bd/IMG_2452.jpg" alt="День 12" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-12-caldas-bd/IMG_5106.jpg" alt="День 12" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-12-caldas-bd/IMG_5138.jpg" alt="День 12" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-12-caldas-bd/IMG_5157.jpg" alt="День 12" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-12-caldas-bd/IMG_5169.jpg" alt="День 12" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-12-caldas-bd/IMG_5145.jpg" alt="День 12" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+      </div>
+      <div class="stage-story">
+        <p>День рождения — и ни одного километра. Бассейн, вкусная еда, отель у водопада. Иногда лучший день на Камино — это тот, когда ты никуда не идёшь.</p>
+      </div>
+
+      <div class="tip-box">
+        <h4>💡 Совет</h4>
+        <p>Если планируете отмечать день рождения или особую дату на маршруте — Torre do Río идеальное место. Тихо, красиво, вдали от толпы паломников. Бронируйте заранее, номеров мало.</p>
+      </div>
+
+      <div class="hotel-card">
+        <h4>🏨 Где жила</h4>
+        <div class="hotel-detail">
+          <a href="https://torredorio.es/en/hotel-caldas-de-reis/" target="_blank" style="color:var(--color-ocean)">Torre do Río — €175</a>
+          <span>San Andrés de César, 1, A Baxe, Pontevedra</span>
+        </div>
+      </div>
+    </section>
+
+    <hr class="stage-divider">
+
+    <!-- DAY 13 -->
+    <section class="stage fade-in" id="day13">
+      <div class="stage-header">
+        <span class="stage-number">День 13</span>
+        <h2>Caldas de Reis → Padrón</h2>
+      </div>
+      <div class="stage-meta">
+        <span>📏 ~18 км</span>
+        <span>🗓 22 августа 2025</span>
+        <span>☀️ Жарко</span>
+      </div>
+      <p class="stage-terrain">🌳 Лесочки, поля, дороги. Пейзаж спокойный, без особых highlights — это финишная прямая.</p>
+            <div class="stage-photos gallery" data-gallery="day13">
+        <img class="gallery-item" src="photos/day-13-padron/IMG_5206 2.jpg" alt="День 13" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-13-padron/IMG_2453.jpg" alt="День 13" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-13-padron/IMG_2454.jpg" alt="День 13" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-13-padron/IMG_2455.jpg" alt="День 13" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-13-padron/IMG_2456.jpg" alt="День 13" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-13-padron/IMG_2460.jpg" alt="День 13" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+      </div>
+      <div class="stage-story">
+        <p>Честно: последние дни перед Сантьяго — самые неинтересные по пейзажу. Лесочки, поля, снова лесочки. Жара усилилась. Маршрут стал больше напоминать марш-бросок, чем прогулку. Но это тоже часть пути — и важно это знать заранее, чтобы не разочаровываться.</p>
+        <p>Зато в Падроне меня ждало неожиданно милое жильё — уютная квартирка, очень домашняя. После ночей в отелях и хостелах это было приятной переменой. Именно такое место, где хочется задержаться.</p>
+      </div>
+
+      <div class="tip-box">
+        <h4>💡 Честное предупреждение</h4>
+        <p>Финальные два перехода до Сантьяго — наименее живописные на всём маршруте. Держите это в голове и не ждите от них природных открытий. Главная награда впереди.</p>
+      </div>
+
+      <div class="hotel-card">
+        <h4>🏨 Где жила</h4>
+        <div class="hotel-detail">
+          <a href="https://www.booking.com/hotel/es/almar-ii-padron.html" target="_blank" style="color:var(--color-ocean)">Almar II — Padrón — €90</a>
+          <span>Rúa Noirmoutier, Padrón</span>
+        </div>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; color:var(--color-text-light); margin-top:0.6rem;">Очень классная квартирка — как будто попала домой. Невероятно удобно и комфортно. Если бы было что делать в Падроне — осталась бы дольше. Но Падрон сам по себе маленький и тихий, так что просто наслаждаешься квартирой.</p>
+      </div>
+    </section>
+
+    <hr class="stage-divider">
+
+    <!-- DAY 14 -->
+    <section class="stage fade-in" id="day14">
+      <div class="stage-header">
+        <span class="stage-number">День 14</span>
+        <h2>Padrón → Santiago de Compostela</h2>
+      </div>
+      <div class="stage-meta">
+        <span>📏 ~15 км</span>
+        <span>🗓 23 августа 2025</span>
+        <span>🎉 Финиш!</span>
+      </div>
+      <p class="stage-terrain">🌳🏙️ Смешанный рельеф: леса, дороги, въезд в город. Финиш на Пласа-дель-Обрадоиро у собора Сантьяго-де-Компостела.</p>
+            <div class="stage-photos gallery" data-gallery="day14">
+        <img class="gallery-item" src="photos/day-14-santiago/IMG_2463.jpg" alt="День 14" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-14-santiago/IMG_2464.jpg" alt="День 14" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-14-santiago/IMG_5241.jpg" alt="День 14" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-14-santiago/IMG_5250.jpg" alt="День 14" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-14-santiago/IMG_5257.jpg" alt="День 14" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-14-santiago/IMG_2461.jpg" alt="День 14" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+      </div>
+      <div class="stage-story">
+        <p>Последние пятнадцать километров. Жарко. Маршрут простой — и это хорошо: сил думать уже нет, просто идёшь.</p>
+        <p>К часу дня я вышла на Пласа-дель-Обрадоиро — главную площадь перед собором Сантьяго-де-Компостела. Площадь полна людей, в основном большие группы. Все радуются, обнимаются, фотографируются. Это заряжает, даже если ты шла почти в одиночку.</p>
+        <p>Первым делом — за компостелой. Объяснила, что потеряла креденсиаль, показала фотографии штампов. Пошли навстречу и выдали. Путь пройден.</p>
+        <p>Вечером — паломническая месса в соборе. Пришла заранее, заняла место во втором или третьем ряду. Служба торжественная, особенная — достойное завершение двух недель в пути.</p>
+      </div>
+
+      <div class="tip-box">
+        <h4>💡 Паломническая месса</h4>
+        <p>Проводится дважды в день — в 12:00 и 18:00 (уточняйте на месте). Приходите пораньше — собор быстро заполняется. Я просто подошла и спросила, когда ближайшая месса — всё оказалось просто.</p>
+      </div>
+
+      <div class="tip-box">
+        <h4>💡 Потеряли креденсиаль?</h4>
+        <p>Фотографии штампов помогут объяснить ситуацию в Паломническом бюро (Oficina del Peregrino). Мне пошли навстречу без лишних вопросов.</p>
+      </div>
+
+      <div class="hotel-card">
+        <h4>🏨 Где жила</h4>
+        <div class="hotel-detail">
+          <a href="https://www.booking.com/hotel/es/coliving-compostela.html" target="_blank" style="color:var(--color-ocean)">Coliving Compostela S.L. — €90</a>
+          <span>Avda. Rosalía de Castro, 88, Santiago de Compostela</span>
+        </div>
+        <p style="font-family:var(--font-sans); font-size:0.85rem; color:var(--color-text-light); margin-top:0.6rem;">Уютный и комфортный коливинг: большая кухня, где можно готовить самому, уютная гостиная. Удобное расположение — рядом собор, станция, кафе и рестораны.</p>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ============ TIPS SECTION ============ -->
+  <section class="tips-section" id="tips">
+    <div class="tips-inner">
+      <h2>Полезные советы</h2>
+      <div class="tips-grid">
+
+        <div class="tips-category">
+          <h3>☀️ Когда идти</h3>
+          <ul>
+            <li>Все советуют май, июнь, сентябрь — и никто не советует август. Но для португальского прибрежного пути это миф. Я шла в августе и не пожалела ни разу.</li>
+            <li>В Португалии благодаря океану температура держится около 20–25°C. В первую неделю я даже подмерзала. В Испании ближе к Сантьяго потеплело до 30°C, но если выходить утром — вполне комфортно.</li>
+            <li>За 14 дней — ни одного дождливого дня. Все дождевые вещи, которые я купила, так и пролежали в рюкзаке.</li>
+            <li>Если у вас, как у многих, май и сентябрь — рабочие месяцы, август — отличная альтернатива. По крайней мере, на прибрежном португальском маршруте.</li>
+          </ul>
+        </div>
+
+        <div class="tips-category">
+          <h3>🎒 Рюкзак</h3>
+          <ul>
+            <li><strong>Главное правило — вентилируемая спина.</strong> Берите рюкзак с жёсткой рамой и зазором между спиной и рюкзаком. Без этого спина будет постоянно мокрой от пота — в августовскую жару это невыносимо.</li>
+            <li>Не жалейте времени на выбор. Это самое важное снаряжение. Стоит примерить несколько вариантов с нагрузкой, прежде чем покупать.</li>
+          </ul>
+        </div>
+
+        <div class="tips-category">
+          <h3>🎒 Что взять с собой</h3>
+          <ul>
+            <li><strong>Взяла и не пожалела:</strong> 4 майки, 2 пары шорт, купальник, тонкий плед (выручал в разных ситуациях), лёгкие кроссовки, нижнее бельё, носки, кепка.</li>
+            <li><strong>Взяла и пожалела:</strong> шлёпки (лишний вес, не пригодились), белые шорты «на выход» (не нужны), две нарядные кофты (максимум одна, а лучше вообще без них).</li>
+            <li><strong>Дождевые причиндалы</strong> (чехол на рюкзак, чехол на кроссовки, дождевик) — если идёте в августе по прибрежному маршруту, можно смело не брать. За 14 дней не было ни одного дождя.</li>
+          </ul>
+        </div>
+
+        <div class="tips-category">
+          <h3>🦶 Здоровье и ноги</h3>
+          <ul>
+            <li><strong>Клейте пластыри превентивно — не ждите мозолей.</strong> После первого дня осмотрите ступни: где появились покраснения — сразу залепите. Лучше перестраховаться, чем потом мучиться.</li>
+            <li>Можно заклеить потенциально проблемные места ещё до старта — пятки, мизинцы, подушечки стоп.</li>
+            <li><strong>Compeed</strong> — лучшие пластыри для паломников. Гидроколлоидные, держатся несколько дней, не слетают от пота. Продаются в аптеках.</li>
+          </ul>
+        </div>
+
+        <div class="tips-category">
+          <h3>📱 Навигация и подготовка</h3>
+          <ul>
+            <li><strong><a href="https://apps.apple.com/us/app/buen-camino-de-santiago-app/id858222947" target="_blank" style="color:var(--color-ocean)">Buen Camino de Santiago</a></strong> — самое популярное приложение для Камино (1 млн+ загрузок). Показывает маршрут, расстояния, альберге, рестораны, воду. Работает офлайн. Рекомендуют все — и не зря.</li>
+            <li>В целом маршрут хорошо размечен, и Google Maps тоже справляется.</li>
+            <li><strong><a href="https://stingynomads.com/portuguese-coastal-camino-stages/" target="_blank" style="color:var(--color-ocean)">Подробные PDF по каждому этапу</a></strong> — для тех, кому важно знать заранее: какое покрытие (брусчатка, грунт, асфальт), какой подъём и спуск, что ждёт на каждом участке. Я изучила перед выходом — помогает снять тревогу и понять, что тебя примерно ждёт.</li>
+          </ul>
+        </div>
+
+        <div class="tips-category">
+          <h3>🐚 Перед стартом: Валенсия</h3>
+          <ul>
+            <li>Если вы из Валенсии — сходите в <strong>Ассоциацию друзей Камино де Сантьяго</strong>. Находится недалеко от станции Хатива. Там можно поговорить с людьми, которые ходили разные маршруты много раз, задать вопросы, развеять сомнения.</li>
+            <li>Там же можно купить <strong>паспорт паломника (креденсиаль)</strong> и <strong>ракушку</strong> — символ Камино. Общение, скорее всего, на испанском.</li>
+          </ul>
+        </div>
+
+        <div class="tips-category">
+          <h3>👟 Обувь</h3>
+          <ul>
+            <li>Я прошла весь маршрут в одних лёгких городских кроссовках — мягких, продуваемых, без толстой подошвы. В целом справились. Единственная проблема — участки с брусчаткой: без амортизации было больно.</li>
+            <li>В следующий раз взяла бы два варианта: <strong>лёгкие кроссовки</strong> для большинства дней + <strong>треккинговые сандали</strong> (открытые, но с хорошей подошвой) для жёстких покрытий и жары.</li>
+            <li>Треккинговые ботинки — не обязательны. Главное — хорошая подошва и лёгкость.</li>
+          </ul>
+        </div>
+
+        <div class="tips-category">
+          <h3>📸 Ray-Ban Meta — неожиданный лайфхак</h3>
+          <ul>
+            <li>Перед поездкой купила <strong>Ray-Ban Meta</strong> — умные очки с камерой. Оказалось лучшим гаджетом на всём маршруте. Идёшь, видишь красоту — фиксируешь не останавливаясь, просто нажатием на оправу. Фото и видео без остановки.</li>
+            <li>На Камино ты почти всё время в очках от солнца — так что это вообще не лишний гаджет, а просто замена обычным очкам. Покупка не дешёвая, но она окупилась во всех последующих поездках.</li>
+          </ul>
+        </div>
+
+        <div class="tips-category">
+          <h3>🎒 Аренда снаряжения</h3>
+          <ul>
+            <li>Если вы из Валенсии и не хотите покупать всё с нуля — я готова сдать снаряжение в аренду за символическую плату: рюкзак, дождевик, чехол на рюкзак, чехлы на обувь.</li>
+            <li>Напишите мне в Telegram — договоримся.</li>
+          </ul>
+        </div>
+
+        <div class="tips-category">
+          <h3>🏨 Жильё</h3>
+          <ul>
+            <li><strong>Муниципальные альберге не бронируются.</strong> Принцип — живая очередь. Приходите к открытию (обычно 13:00–14:00), ставите рюкзак в очередь и ждёте.</li>
+            <li><strong>Частные альберге</strong> — можно бронировать заранее. Стоят около €30–40 за ночь. Общая комната, но с гарантированным местом.</li>
+            <li><strong>Отели и гестхаусы</strong> — €70–90 за ночь (цена за номер, а не за человека, если едете вдвоём). Приватность и комфорт.</li>
+            <li>Можно миксовать форматы — именно так и получается интересно.</li>
+          </ul>
+        </div>
+
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CAMINO ВАРИАНТЫ ============ -->
+  <section style="background:var(--color-white); padding:5rem 2rem;">
+    <div style="max-width:720px; margin:0 auto;">
+      <h2 style="font-size:1.8rem; color:var(--color-ocean); margin-bottom:1.5rem;">Камино бывает очень разным</h2>
+      <p style="font-size:1.05rem; color:var(--color-text-light); margin-bottom:1rem;">Один и тот же маршрут можно пройти десятком разных способов — и получить совершенно разный опыт. Всё зависит от того, с кем и как вы идёте.</p>
+
+      <p style="font-size:1.05rem; color:var(--color-text-light); margin-bottom:0.8rem;"><strong>Соло в полумедитативном формате</strong> — как шла я. Ночуешь и в хостеле, и в отеле, минимум общения, максимум головы наедине с собой.</p>
+
+      <p style="font-size:1.05rem; color:var(--color-text-light); margin-bottom:0.8rem;"><strong>Соло с фокусом на людей</strong> — только альберге, постоянное общение. Вы будете идти день за днём с одними и теми же людьми и почти наверняка уйдёте с новыми друзьями со всего мира.</p>
+
+      <p style="font-size:1.05rem; color:var(--color-text-light); margin-bottom:0.8rem;"><strong>С партнёром</strong> — очень рекомендую. Камино немного выбивает из привычного ритма жизни, и в этих условиях человек проявляет себя по-настоящему. Это такая проверка боем. Я видела пару из Чехии — мужчина проявлял такую заботу к своей девушке, что если она потом не вышла за него замуж, то я не знаю, что ей вообще нужно.</p>
+
+      <p style="font-size:1.05rem; color:var(--color-text-light); margin-bottom:0.8rem;"><strong>С друзьями</strong> — взрослый летний лагерь. Будет весело и немного безумно.</p>
+
+      <p style="font-size:1.05rem; color:var(--color-text-light); margin-bottom:0.8rem;"><strong>С семьёй</strong> — я видела в Сантьяго группу человек из 8–10 в одинаковых майках с одной фамилией. Видимо, целая семья собралась и дошла вместе. Это прекрасно.</p>
+
+      <p style="font-size:1.05rem; color:var(--color-text-light); margin-bottom:0.8rem;"><strong>С собакой</strong> — да, так тоже можно. Собак-паломников называют <em>перрегрино</em> (perregrino — игра слов: perro + peregrino). У них есть свой креденсиаль, они собирают штампы, и в финале получают сертификат <em>Perregrina</em>. Подробнее — на сайте <a href="https://www.pilgrim.es/planificar/el-camino-de-santiago-con-perro/" target="_blank" style="color:var(--color-ocean)">Canine Compostela</a>. Не все альберге принимают собак, но такие есть.</p>
+
+      <p style="font-size:1.05rem; color:var(--color-text-light); margin-bottom:0.8rem;"><strong>С детьми</strong> — видела и такое. Кто-то с коляской через лес, кто-то с подростками. Люди выбирают более короткие и лёгкие участки.</p>
+
+      <p style="font-size:1.05rem; color:var(--color-text-light); margin-bottom:1.5rem;"><strong>На велосипеде</strong> — если мало времени или вы заядлый велосипедист, весь маршрут реально проехать примерно за неделю.</p>
+
+      <p style="font-size:1.1rem; color:var(--color-text); font-style:italic;">Просто выберите свой вариант — и идите.</p>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <h2>Buen Camino! 🐚</h2>
+    <p>Если остались вопросы — не стесняйтесь писать мне в <a href="https://t.me/Kate_East" target="_blank" style="color:var(--color-accent)">Telegram</a>.</p>
+    <p style="margin-top:0.8rem; opacity:0.8;">А ещё загляните в мой Instagram — там в сохранённых Stories весь путь день за днём: <strong>Camino Part One</strong> и <strong>Camino Part Two</strong>. <a href="https://instagram.com/deneuvka" target="_blank" style="color:var(--color-accent)">Открыть Instagram</a></p>
+  </footer>
+
+  <!-- ============ SCRIPTS ============ -->
+  <script>
+    // Nav show/hide
+    const nav = document.getElementById('topNav');
+    const hero = document.querySelector('.hero');
+    const navObserver = new IntersectionObserver(([entry]) => {
+      nav.classList.toggle('visible', !entry.isIntersecting);
+    }, { threshold: 0.1 });
+    navObserver.observe(hero);
+
+    // Fade-in on scroll
+    const fadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
+
+    // Lightbox
+    const lightbox = document.createElement('div');
+    lightbox.className = 'lightbox';
+    lightbox.innerHTML = `
+      <div class="lightbox-inner">
+        <button class="lightbox-btn" id="lb-prev">‹</button>
+        <div style="position:relative;">
+          <button class="lightbox-close" id="lb-close">✕</button>
+          <div class="lightbox-content" id="lb-content"></div>
+          <div class="lightbox-counter" id="lb-counter"></div>
+        </div>
+        <button class="lightbox-btn" id="lb-next">›</button>
+      </div>`;
+    document.body.appendChild(lightbox);
+
+    let lbItems = [], lbIndex = 0;
+
+    function openLightbox(items, index) {
+      lbItems = items; lbIndex = index;
+      showLbItem();
+      lightbox.classList.add('active');
+    }
+
+    function showLbItem() {
+      const item = lbItems[lbIndex];
+      const content = document.getElementById('lb-content');
+      if (item.tagName === 'IMG') {
+        content.innerHTML = `<img src="${item.src}" style="max-width:80vw; max-height:85vh; border-radius:8px; object-fit:contain;">`;
+      } else {
+        content.innerHTML = `<div style="width:500px; height:400px; display:flex; align-items:center; justify-content:center; color:#666;">${item.innerHTML}</div>`;
+      }
+      document.getElementById('lb-counter').textContent = `${lbIndex + 1} / ${lbItems.length}`;
+    }
+
+    document.getElementById('lb-close').onclick = () => lightbox.classList.remove('active');
+    document.getElementById('lb-prev').onclick = () => { lbIndex = (lbIndex - 1 + lbItems.length) % lbItems.length; showLbItem(); };
+    document.getElementById('lb-next').onclick = () => { lbIndex = (lbIndex + 1) % lbItems.length; showLbItem(); };
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) lightbox.classList.remove('active'); });
+    document.addEventListener('keydown', e => {
+      if (!lightbox.classList.contains('active')) return;
+      if (e.key === 'ArrowLeft') { lbIndex = (lbIndex - 1 + lbItems.length) % lbItems.length; showLbItem(); }
+      if (e.key === 'ArrowRight') { lbIndex = (lbIndex + 1) % lbItems.length; showLbItem(); }
+      if (e.key === 'Escape') lightbox.classList.remove('active');
+    });
+
+    document.querySelectorAll('.gallery').forEach(gallery => {
+      const items = Array.from(gallery.querySelectorAll('.gallery-item, img'));
+      items.forEach((item, i) => {
+        item.style.cursor = 'pointer';
+        item.addEventListener('click', () => openLightbox(items, i));
+      });
+    });
+
+    // Expandable personal stories — все дни
+    document.querySelectorAll('.stage-story').forEach(story => {
+      const btn = document.createElement('button');
+      btn.className = 'story-toggle';
+      btn.innerHTML = '<span>Читать личный опыт</span><span class="arrow">▾</span>';
+      story.parentNode.insertBefore(btn, story);
+
+      btn.addEventListener('click', () => {
+        const isOpen = story.classList.toggle('open');
+        btn.classList.toggle('open', isOpen);
+        btn.querySelector('span').textContent = isOpen ? 'Скрыть' : 'Читать личный опыт';
+      });
+    });
+  </script>
+</body>
+</html>
