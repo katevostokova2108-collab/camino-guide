@@ -41,7 +41,7 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      background: linear-gradient(135deg, rgba(26,58,74,0.75) 0%, rgba(46,107,138,0.65) 40%, rgba(74,155,191,0.6) 100%), url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80') center/cover no-repeat;
+      background: linear-gradient(135deg, rgba(26,58,74,0.6) 0%, rgba(46,107,138,0.5) 60%, rgba(74,155,191,0.4) 100%), url('https://images.unsplash.com/photo-1754311897496-042dac49dd19?w=1920&q=80') center/cover no-repeat;
       color: var(--color-white);
       overflow: hidden;
     }
@@ -259,9 +259,9 @@
       font-family: var(--font-sans);
       font-size: 0.85rem;
       font-weight: 500;
-      color: var(--color-ocean);
-      background: none;
-      border: 1px solid var(--color-ocean-light);
+      color: var(--color-white);
+      background: var(--color-ocean);
+      border: 1px solid var(--color-ocean);
       border-radius: 2rem;
       padding: 0.45rem 1.1rem;
       cursor: pointer;
@@ -270,9 +270,8 @@
     }
 
     .story-toggle:hover {
-      background: var(--color-ocean);
-      color: var(--color-white);
-      border-color: var(--color-ocean);
+      background: #1a4a6a;
+      border-color: #1a4a6a;
     }
 
     .story-toggle .arrow {
@@ -498,14 +497,69 @@
     /* ============ RESPONSIVE ============ */
     @media (max-width: 600px) {
       .stage { padding: 3rem 1.2rem; }
-      .stage-photos { grid-template-columns: 1fr; }
       .hero-meta { flex-direction: column; align-items: center; gap: 0.5rem; }
       .tips-grid { grid-template-columns: 1fr; }
       .nav-links { display: none; }
 
       /* Hero */
-      .hero { height: 50vh; min-height: 320px; }
+      .hero { height: 55vh; min-height: 340px; }
       .hero h1 { font-size: 2rem; }
+
+      /* Hero мета — одна строка */
+      .hero-meta {
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        gap: 0.6rem !important;
+        font-size: 0.75rem !important;
+        justify-content: center;
+      }
+
+      /* Галерея — горизонтальный скролл, вертикальные фото (4:5) */
+      .stage-photos {
+        display: flex !important;
+        flex-direction: row !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        gap: 0.5rem !important;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 0.5rem;
+      }
+      .stage-photos img, .stage-photos .gallery-item {
+        flex: 0 0 75vw !important;
+        width: 75vw !important;
+        height: calc(75vw * 1.25) !important;
+        object-fit: cover !important;
+        scroll-snap-align: start;
+        border-radius: 8px;
+      }
+
+      /* Лайтбокс на мобилке */
+      .lightbox-inner {
+        flex-direction: column;
+        gap: 0.5rem;
+        max-width: 98vw;
+      }
+      .lightbox-content img {
+        max-width: 92vw !important;
+        max-height: 70vh !important;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+      }
+      .lightbox-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 1.3rem;
+      }
+      #lb-prev, #lb-next {
+        position: fixed;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1001;
+      }
+      #lb-prev { left: 8px; }
+      #lb-next { right: 8px; }
 
       /* Route dots — компактнее на мобилке */
       .route-stages { gap: 0.3rem; }
@@ -524,8 +578,16 @@
       /* Секция советов */
       .tips-section { padding: 3rem 1.2rem; }
 
-      /* Section nav */
-      nav[style] { gap: 1.2rem !important; padding: 0.8rem 1rem !important; }
+      /* Верхний nav — скрываем на мобилке */
+      .top-nav { display: none !important; }
+
+      /* Section nav — наш основной sticky */
+      #sectionNav {
+        gap: 1.5rem !important;
+        padding: 0.9rem 1rem !important;
+        font-size: 0.95rem !important;
+        font-weight: 500 !important;
+      }
     }
 
     /* ============ LIGHTBOX ============ */
@@ -550,19 +612,25 @@
     }
 
     .lightbox-content {
-      max-width: 80vw;
+      max-width: 90vw;
       max-height: 85vh;
       border-radius: 8px;
-      object-fit: contain;
       display: flex;
       align-items: center;
       justify-content: center;
       background: #1a1a1a;
-      min-width: 300px;
-      min-height: 300px;
       color: #666;
       font-family: var(--font-sans);
       font-size: 1rem;
+    }
+    .lightbox-content img {
+      max-width: 85vw;
+      max-height: 80vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 8px;
+      display: block;
     }
 
     .lightbox-btn {
@@ -645,7 +713,7 @@
   </section>
 
   <!-- ============ SECTION NAV ============ -->
-  <nav style="background:var(--color-white); padding:1rem 2rem; display:flex; gap:2rem; justify-content:center; border-bottom:1px solid var(--color-warm); font-family:var(--font-sans); font-size:0.9rem;">
+  <nav id="sectionNav" style="position:sticky; top:0; z-index:99; background:var(--color-white); padding:1rem 2rem; display:flex; gap:2rem; justify-content:center; border-bottom:1px solid var(--color-warm); font-family:var(--font-sans); font-size:0.9rem; box-shadow:0 2px 8px rgba(0,0,0,0.08);">
     <a href="#route" style="color:var(--color-ocean); text-decoration:none;">Маршрут</a>
     <a href="#stages" style="color:var(--color-ocean); text-decoration:none;">Этапы</a>
     <a href="#tips" style="color:var(--color-ocean); text-decoration:none;">Советы</a>
@@ -805,7 +873,7 @@
         <span>🗓 12 августа 2025</span>
         <span>🚌 Автобус в конце этапа</span>
       </div>
-      <p class="stage-terrain">🌲 Начало по побережью, затем уход на классический маршрут: леса, тень, старые деревни, мягкие тропы.</p>
+      <p class="stage-terrain">🌲 Начало по побережью, затем уход на центральный маршрут (Camino Português Central — в отличие от прибрежного варианта, идёт по суше через деревни и леса): тень, мягкие тропы, старые деревни.</p>
             <div class="stage-photos gallery" data-gallery="day3">
         <img class="gallery-item" src="photos/day-03-esposende/IMG_2170.jpg" alt="День 3" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
         <img class="gallery-item" src="photos/day-03-esposende/IMG_2166.jpg" alt="День 3" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
@@ -854,12 +922,12 @@
       </div>
       <p class="stage-terrain">🪨 Дикая северная местность, движение в сторону границы. Внимание: длинный участок брусчатки в Afife — болезненно для стоп.</p>
             <div class="stage-photos gallery" data-gallery="day4">
+        <img class="gallery-item" src="photos/day-04-viana-do-castelo/IMG_4434.jpg" alt="День 4" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
+        <img class="gallery-item" src="photos/day-04-viana-do-castelo/photo-1527_singular_display_fullPicture.jpg" alt="День 4" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
         <img class="gallery-item" src="photos/day-04-viana-do-castelo/IMG_2172.jpg" alt="День 4" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
         <img class="gallery-item" src="photos/day-04-viana-do-castelo/IMG_4489.jpg" alt="День 4" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
         <img class="gallery-item" src="photos/day-04-viana-do-castelo/od_photo-1657_singular_display_fullPicture.jpg" alt="День 4" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
         <img class="gallery-item" src="photos/day-04-viana-do-castelo/od_photo-1678_singular_display_fullPicture.jpg" alt="День 4" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
-        <img class="gallery-item" src="photos/day-04-viana-do-castelo/photo-1527_singular_display_fullPicture.jpg" alt="День 4" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
-        <img class="gallery-item" src="photos/day-04-viana-do-castelo/IMG_4434.jpg" alt="День 4" style="height:220px; object-fit:cover; border-radius:8px; cursor:pointer; width:100%;">
       </div>
       <div class="stage-story">
         <p>Проснулась необычайно рано и пошла смотреть рассвет. Это был, наверное, самый красивый момент за всё путешествие. Хостел стоит на холме прямо над морем — внизу лежала дымка, и над этим всем вставало солнце. Просто нечто.</p>
@@ -1346,14 +1414,17 @@
           <ul>
             <li><strong>Главное правило — вентилируемая спина.</strong> Берите рюкзак с жёсткой рамой и зазором между спиной и рюкзаком. Без этого спина будет постоянно мокрой от пота — в августовскую жару это невыносимо.</li>
             <li>Не жалейте времени на выбор. Это самое важное снаряжение. Стоит примерить несколько вариантов с нагрузкой, прежде чем покупать.</li>
+            <li>Я ходила с <a href="https://www.decathlon.es/es/p/mochila-de-senderismo-ventilada-25l-mh500-verde/353060/c386m8912493" target="_blank" style="color:var(--color-ocean)">Quechua MH500 25L — рюкзак с вентилируемой спиной (Decathlon)</a> — отличный вариант по соотношению цена/качество.</li>
           </ul>
         </div>
 
         <div class="tips-category">
           <h3>🎒 Что взять с собой</h3>
           <ul>
+            <li>📹 <a href="https://youtu.be/qHt43jZb4Z4" target="_blank" style="color:var(--color-ocean)">Смотри видео — рассказываю подробно что взяла и о чём пожалела</a></li>
             <li><strong>Взяла и не пожалела:</strong> 4 майки, 2 пары шорт, купальник, тонкий плед (выручал в разных ситуациях), лёгкие кроссовки, нижнее бельё, носки, кепка.</li>
-            <li><strong>Взяла и пожалела:</strong> шлёпки (лишний вес, не пригодились), белые шорты «на выход» (не нужны), две нарядные кофты (максимум одна, а лучше вообще без них).</li>
+            <li><strong>Взяла и пожалела:</strong> белые шорты «на выход» (не нужны), нарядные кофты (не нужны — максимум одна, а лучше вообще ни одной).</li>
+            <li><strong>Взяла и не пожалела (неожиданно):</strong> шлёпки — оказались очень полезными в отелях и хостелах.</li>
             <li><strong>Дождевые причиндалы</strong> (чехол на рюкзак, чехол на кроссовки, дождевик) — если идёте в августе по прибрежному маршруту, можно смело не брать. За 14 дней не было ни одного дождя.</li>
           </ul>
         </div>
@@ -1379,7 +1450,7 @@
         <div class="tips-category">
           <h3>🐚 Перед стартом: Валенсия</h3>
           <ul>
-            <li>Если вы из Валенсии — сходите в <strong>Ассоциацию друзей Камино де Сантьяго</strong>. Находится недалеко от станции Хатива. Там можно поговорить с людьми, которые ходили разные маршруты много раз, задать вопросы, развеять сомнения.</li>
+            <li>Если вы из Валенсии — сходите в <a href="https://share.google/Phj3nK7YYPRPlj0ya" target="_blank" style="color:var(--color-ocean)"><strong>Ассоциацию друзей Камино де Сантьяго</strong></a>. Находится недалеко от станции Хатива. Там можно поговорить с людьми, которые ходили разные маршруты много раз, задать вопросы, развеять сомнения.</li>
             <li>Там же можно купить <strong>паспорт паломника (креденсиаль)</strong> и <strong>ракушку</strong> — символ Камино. Общение, скорее всего, на испанском.</li>
           </ul>
         </div>
@@ -1502,9 +1573,9 @@
       const item = lbItems[lbIndex];
       const content = document.getElementById('lb-content');
       if (item.tagName === 'IMG') {
-        content.innerHTML = `<img src="${item.src}" style="max-width:80vw; max-height:85vh; border-radius:8px; object-fit:contain;">`;
+        content.innerHTML = `<img src="${item.src}" alt="">`;
       } else {
-        content.innerHTML = `<div style="width:500px; height:400px; display:flex; align-items:center; justify-content:center; color:#666;">${item.innerHTML}</div>`;
+        content.innerHTML = `<div style="padding:2rem; color:#666;">${item.innerHTML}</div>`;
       }
       document.getElementById('lb-counter').textContent = `${lbIndex + 1} / ${lbItems.length}`;
     }
@@ -1533,7 +1604,13 @@
       const btn = document.createElement('button');
       btn.className = 'story-toggle';
       btn.innerHTML = '<span>Читать личный опыт</span><span class="arrow">▾</span>';
-      story.parentNode.insertBefore(btn, story);
+      // Вставляем кнопку ПЕРЕД галереей фото
+      const gallery = story.parentNode.querySelector('.stage-photos');
+      if (gallery) {
+        story.parentNode.insertBefore(btn, gallery);
+      } else {
+        story.parentNode.insertBefore(btn, story);
+      }
 
       btn.addEventListener('click', () => {
         const isOpen = story.classList.toggle('open');
