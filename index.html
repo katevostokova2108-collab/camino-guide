@@ -1608,6 +1608,8 @@
       const gallery = story.parentNode.querySelector('.stage-photos');
       if (gallery) {
         story.parentNode.insertBefore(btn, gallery);
+        // Перемещаем текст истории сразу после кнопки (до фото)
+        story.parentNode.insertBefore(story, gallery);
       } else {
         story.parentNode.insertBefore(btn, story);
       }
