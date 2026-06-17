@@ -6,6 +6,8 @@
   <title>Камино де Сантьяго — Португальский путь по побережью</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <style>
     :root {
       --color-sand: #F5F0E8;
@@ -756,6 +758,7 @@
       <span class="route-line">→</span>
       <a href="#day14" class="route-dot">Santiago ✨<br><small>~263 км</small></a>
     </div>
+    <div id="camino-map" style="height:420px; border-radius:12px; margin-top:2rem; border:1px solid var(--color-warm);"></div>
   </section>
 
   <!-- ============ STAGES ============ -->
@@ -1545,6 +1548,44 @@
       });
     }, { threshold: 0.1 });
     document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
+
+    // Leaflet map
+    const map = L.map('camino-map', { zoomControl: true }).setView([42.0, -8.7], 7);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap'
+    }).addTo(map);
+
+    const stages = [
+      { day: 1,  name: 'Matosinhos → Vila do Conde', lat: 41.356, lng: -8.747, anchor: 'day1' },
+      { day: 2,  name: 'Vila do Conde → Marinhas',   lat: 41.533, lng: -8.783, anchor: 'day2' },
+      { day: 3,  name: 'Marinhas → Viana do Castelo',lat: 41.693, lng: -8.833, anchor: 'day3' },
+      { day: 4,  name: 'Viana do Castelo → Âncora',  lat: 41.810, lng: -8.859, anchor: 'day4' },
+      { day: 5,  name: 'Âncora → A Mariña 🇪🇸',      lat: 41.967, lng: -8.883, anchor: 'day5' },
+      { day: 6,  name: 'A Mariña → Baiona',          lat: 42.117, lng: -8.850, anchor: 'day6' },
+      { day: 7,  name: 'Baiona → Vigo',              lat: 42.240, lng: -8.720, anchor: 'day7' },
+      { day: 8,  name: 'Виго — отдых (о. Онс)',      lat: 42.241, lng: -8.721, anchor: 'day8' },
+      { day: 9,  name: 'Vigo → Arcade',              lat: 42.350, lng: -8.617, anchor: 'day9' },
+      { day: 10, name: 'Arcade → Pontevedra',        lat: 42.433, lng: -8.650, anchor: 'day10' },
+      { day: 11, name: 'Pontevedra → Caldas de Reis',lat: 42.603, lng: -8.646, anchor: 'day11' },
+      { day: 12, name: 'Калдас-де-Рейс — отдых',    lat: 42.604, lng: -8.647, anchor: 'day12' },
+      { day: 13, name: 'Caldas de Reis → Padrón',    lat: 42.740, lng: -8.657, anchor: 'day13' },
+      { day: 14, name: 'Padrón → Santiago ✨',        lat: 42.878, lng: -8.544, anchor: 'day14' },
+    ];
+
+    const routeCoords = stages.map(s => [s.lat, s.lng]);
+    L.polyline(routeCoords, { color: '#2E6B8A', weight: 3, opacity: 0.8 }).addTo(map);
+
+    stages.forEach(s => {
+      const icon = L.divIcon({
+        className: '',
+        html: `<div style="background:#2E6B8A;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-family:sans-serif;font-size:11px;font-weight:600;border:2px solid white;box-shadow:0 2px 6px rgba(0,0,0,0.3);cursor:pointer;">${s.day}</div>`,
+        iconSize: [28, 28],
+        iconAnchor: [14, 14]
+      });
+      L.marker([s.lat, s.lng], { icon })
+        .addTo(map)
+        .bindPopup(`<b>День ${s.day}</b><br>${s.name}<br><a href="#${s.anchor}" style="color:#2E6B8A;">Читать →</a>`);
+    });
 
     // Lightbox
     const lightbox = document.createElement('div');
