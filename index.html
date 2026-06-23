@@ -1556,23 +1556,24 @@
     }).addTo(map);
 
     const stages = [
-      { day: 1,  name: 'Matosinhos → Vila do Conde', lat: 41.356, lng: -8.747, anchor: 'day1' },
-      { day: 2,  name: 'Vila do Conde → Marinhas',   lat: 41.533, lng: -8.783, anchor: 'day2' },
-      { day: 3,  name: 'Marinhas → Viana do Castelo',lat: 41.693, lng: -8.833, anchor: 'day3' },
-      { day: 4,  name: 'Viana do Castelo → Âncora',  lat: 41.810, lng: -8.859, anchor: 'day4' },
-      { day: 5,  name: 'Âncora → A Mariña 🇪🇸',      lat: 41.967, lng: -8.883, anchor: 'day5' },
-      { day: 6,  name: 'A Mariña → Baiona',          lat: 42.117, lng: -8.850, anchor: 'day6' },
-      { day: 7,  name: 'Baiona → Vigo',              lat: 42.240, lng: -8.720, anchor: 'day7' },
-      { day: 8,  name: 'Виго — отдых (о. Онс)',      lat: 42.241, lng: -8.721, anchor: 'day8' },
-      { day: 9,  name: 'Vigo → Arcade',              lat: 42.350, lng: -8.617, anchor: 'day9' },
-      { day: 10, name: 'Arcade → Pontevedra',        lat: 42.433, lng: -8.650, anchor: 'day10' },
-      { day: 11, name: 'Pontevedra → Caldas de Reis',lat: 42.603, lng: -8.646, anchor: 'day11' },
-      { day: 12, name: 'Калдас-де-Рейс — отдых',    lat: 42.604, lng: -8.647, anchor: 'day12' },
-      { day: 13, name: 'Caldas de Reis → Padrón',    lat: 42.740, lng: -8.657, anchor: 'day13' },
-      { day: 14, name: 'Padrón → Santiago ✨',        lat: 42.878, lng: -8.544, anchor: 'day14' },
+      { day: 1,  name: 'Matosinhos → Vila do Conde', lat: 41.183, lng: -8.690, anchor: 'day1' },  // старт: Matosinhos
+      { day: 2,  name: 'Vila do Conde → Marinhas',   lat: 41.353, lng: -8.748, anchor: 'day2' },  // старт: Vila do Conde
+      { day: 3,  name: 'Marinhas → Viana do Castelo',lat: 41.536, lng: -8.784, anchor: 'day3' },  // старт: Marinhas
+      { day: 4,  name: 'Viana do Castelo → Âncora',  lat: 41.697, lng: -8.833, anchor: 'day4' },  // старт: Viana do Castelo
+      { day: 5,  name: 'Âncora → A Mariña 🇪🇸',      lat: 41.812, lng: -8.856, anchor: 'day5' },  // старт: Âncora
+      { day: 6,  name: 'A Mariña → Baiona',          lat: 41.967, lng: -8.883, anchor: 'day6' },  // старт: A Mariña
+      { day: 7,  name: 'Baiona → Vigo',              lat: 42.119, lng: -8.845, anchor: 'day7' },  // старт: Baiona
+      { day: 8,  name: 'Виго — отдых (о. Онс)',      lat: 42.240, lng: -8.720, anchor: 'day8' },  // Vigo (отдых)
+      { day: 9,  name: 'Vigo → Arcade',              lat: 42.240, lng: -8.720, anchor: 'day9' },  // старт: Vigo
+      { day: 10, name: 'Arcade → Pontevedra',        lat: 42.354, lng: -8.620, anchor: 'day10' }, // старт: Arcade
+      { day: 11, name: 'Pontevedra → Caldas de Reis',lat: 42.433, lng: -8.645, anchor: 'day11' }, // старт: Pontevedra
+      { day: 12, name: 'Калдас-де-Рейс — отдых',    lat: 42.603, lng: -8.645, anchor: 'day12' }, // Caldas (отдых)
+      { day: 13, name: 'Caldas de Reis → Padrón',    lat: 42.603, lng: -8.645, anchor: 'day13' }, // старт: Caldas
+      { day: 14, name: 'Padrón → Santiago ✨',        lat: 42.740, lng: -8.657, anchor: 'day14' }, // старт: Padrón
     ];
 
-    const routeCoords = stages.map(s => [s.lat, s.lng]);
+    // Маршрут: старты всех дней + финальная точка Сантьяго
+    const routeCoords = [...stages.map(s => [s.lat, s.lng]), [42.878, -8.544]];
     L.polyline(routeCoords, { color: '#2E6B8A', weight: 3, opacity: 0.8 }).addTo(map);
 
     stages.forEach(s => {
